@@ -3,7 +3,7 @@ package com.fermedu.crawler.config;
 import com.fermedu.crawler.pipeline.PipelineChain;
 import com.fermedu.crawler.entity.RuleGeneric;
 import com.fermedu.crawler.processor.ProcessorChain;
-import com.guguskill.util.BeanFactoryUtil;
+import com.guguskill.common.util.BeanFactoryUtil;
 import us.codecraft.webmagic.Site;
 
 import java.util.Map;

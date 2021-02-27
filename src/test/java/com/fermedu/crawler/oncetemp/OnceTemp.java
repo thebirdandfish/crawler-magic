@@ -1,7 +1,7 @@
 package com.fermedu.crawler.oncetemp;
 
 import com.fermedu.crawler.pipeline.book.repo.BookSiteRepository;
-import com.guguskill.util.BeanFactoryUtil;
+import com.guguskill.common.util.BeanFactoryUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.fermedu.crawler.database;
 
 import com.fermedu.crawler.entity.RuleGeneric;
-import com.guguskill.util.BeanFactoryUtil;
+import com.guguskill.common.util.BeanFactoryUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;

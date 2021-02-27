@@ -1,6 +1,6 @@
 package com.fermedu.crawler.config;
 
-import com.guguskill.util.IpUtil;
+import com.guguskill.common.util.IpUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

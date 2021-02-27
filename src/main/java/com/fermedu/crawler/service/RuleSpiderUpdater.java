@@ -7,7 +7,7 @@ import com.fermedu.crawler.entity.SpiderEntity;
 import com.guguskill.common.enumeration.ResultEnum;
 import com.guguskill.common.exception.GuInternalException;
 import com.guguskill.common.util.CopyUtil;
-import com.guguskill.util.BeanFactoryUtil;
+import com.guguskill.common.util.BeanFactoryUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
