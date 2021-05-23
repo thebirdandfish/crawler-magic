@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.fermedu</groupId>
-    <artifactId>crawler-magic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.fermedu.crawler</groupId>
+    <artifactId>scraper-magic</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>Springboot app to crawl webpages</description>
+    <description>Springboot app scraping webpages</description>
 
     <parent>
         <groupId>com.guguskill.common</groupId>
         <artifactId>common-parent</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.5-BUILD</version>
         <relativePath/> <!-- lookup parent from repositorpy -->
     </parent>
 
@@ -20,10 +20,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <dockerfile.maven.version>1.4.3</dockerfile.maven.version>
-        <docker.registry.name.prefix>registry.cn-hongkong.aliyuncs.com/wecandoitjustthink</docker.registry.name.prefix>
 
-        <guguskill-common.version>0.0.2-SNAPSHOT</guguskill-common.version>
+        <guguskill-common.version>0.0.5-BUILD</guguskill-common.version>
         <webmagic.version>0.7.4</webmagic.version>
     </properties>
 
@@ -32,6 +30,11 @@
         <dependency>
             <groupId>com.guguskill.common</groupId>
             <artifactId>common-config</artifactId>
+            <version>${guguskill-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guguskill.common</groupId>
+            <artifactId>common-util</artifactId>
             <version>${guguskill-common.version}</version>
         </dependency>
         <dependency>

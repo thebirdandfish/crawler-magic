@@ -7,6 +7,7 @@ import com.guguskill.common.util.ListUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,7 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
         keyList.add("id");
 
         //创建匹配器，即如何使用查询条件
-        List<String> declaredFields = ClassReflectionUtil.getDeclaredFields(anyKeyFieldMatching.getClass());
+        List<String> declaredFields = ClassReflectionUtil.getDeclaredFieldNames(anyKeyFieldMatching.getClass());
 
         // ignore all but three fields: id, bookSourceName, bookSourceBaseUrl
         String[] ignoredPaths = declaredFields.stream()
@@ -51,7 +52,7 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
     }
 
     public List<T> addOrUpdateList(List<T> entityList) {
-        if (ListUtil.isEmpty(entityList)) {
+        if (CollectionUtils.isEmpty(entityList)) {
             // do nothing
         } else {
             List<T> resultList = entityList.stream().map(e ->
@@ -77,7 +78,7 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
 
     public T findOne(T example) {
         List<T> list = this.findList(example);
-        if (ListUtil.isEmpty(list)) {
+        if (CollectionUtils.isEmpty(list)) {
             return null;
         } else {
             T first = list.stream().findFirst().orElse(null);
@@ -100,7 +101,7 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
         //查询
         List<T> ls = getRepository().findAll(ex);
 
-        if (ListUtil.isEmpty(ls)) {
+        if (CollectionUtils.isEmpty(ls)) {
             return null;
         }
 

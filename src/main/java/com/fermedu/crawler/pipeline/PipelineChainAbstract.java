@@ -4,6 +4,7 @@ import com.fermedu.crawler.database.DbServiceAbstract;
 import com.fermedu.crawler.entity.ExtractedEntity;
 import com.guguskill.common.util.ListUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -39,7 +40,7 @@ public abstract class PipelineChainAbstract<T extends ExtractedEntity> extends D
     @Override
     public void process(ResultItems resultItems, Task task) {
         List<T> list = resultItems.get(this.getExtractedEntityClz().getSimpleName());
-        if (ListUtil.isEmpty(list)) { // 没有对应当前链的结果
+        if (CollectionUtils.isEmpty(list)) { // 没有对应当前链的结果
             log.trace(this.getClass().getSimpleName() + " did not find any " + this.getExtractedEntityClz().getSimpleName() + " in resultItems" + resultItems);
         } else {
             List<T> affectedList = super.addOrUpdateList(list);

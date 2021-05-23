@@ -7,6 +7,7 @@ import com.guguskill.common.util.ListUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.monitor.SpiderMonitor;
 import us.codecraft.webmagic.monitor.SpiderStatusMXBean;
 
@@ -58,7 +59,7 @@ public class SpiderDenServiceImpl implements SpiderDenService {
      */
     private List<CrawlerSpiderStatusMXBean> getSpiderStatuses() {
         List<SpiderStatusMXBean> list = this.getSpiderStatusMXBeanListByInvocation();
-        if (ListUtil.isEmpty(list)) {
+        if (CollectionUtils.isEmpty(list)) {
             log.trace("当前jvm没有任何爬虫");
             return null;
         } else {
@@ -99,7 +100,7 @@ public class SpiderDenServiceImpl implements SpiderDenService {
         List<CrawlerSpiderStatusMXBean> spiderStatuses = this.getSpiderStatuses();
 
         /** 有对应spiderStatus，返回之 */
-        if (domain != null && !ListUtil.isEmpty(spiderStatuses)) {
+        if (domain != null && !CollectionUtils.isEmpty(spiderStatuses)) {
             for (CrawlerSpiderStatusMXBean each : spiderStatuses) {
                 if (domain.equals(each.getDomain())) {
                     return each;

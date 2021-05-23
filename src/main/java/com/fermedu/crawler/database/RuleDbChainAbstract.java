@@ -3,6 +3,7 @@ package com.fermedu.crawler.database;
 import com.fermedu.crawler.entity.RuleGeneric;
 import com.guguskill.common.util.ListUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,7 @@ public abstract class RuleDbChainAbstract<T extends RuleGeneric> extends DbServi
     @Override
     public List<String> accumulateDomainCallNext(List<String> pastDomainList) {
         List<String> currentDomainList = this.getRepository().findAll().stream().map(T::getDomain).collect(Collectors.toList());
-        if (!ListUtil.isEmpty(pastDomainList)) {
+        if (!CollectionUtils.isEmpty(pastDomainList)) {
             currentDomainList.addAll(pastDomainList);
         }
 
@@ -54,7 +55,7 @@ public abstract class RuleDbChainAbstract<T extends RuleGeneric> extends DbServi
     @Override
     public List<Long> accumulateIdCallNext(List<Long> pastIdList) {
         List<Long> currentIdList = this.getRepository().findAll().stream().map(T::getId).collect(Collectors.toList());
-        if (!ListUtil.isEmpty(pastIdList)) {
+        if (!CollectionUtils.isEmpty(pastIdList)) {
             currentIdList.addAll(pastIdList);
         }
 

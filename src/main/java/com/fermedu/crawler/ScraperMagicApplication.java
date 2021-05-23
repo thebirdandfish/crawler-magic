@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling // 定时任务发现注解@Scheduled的任务并后台执行。
 @EnableAspectJAutoProxy(exposeProxy = true)
 // @EnableCaching
-public class CrawlermagicApplication {
+public class ScraperMagicApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CrawlermagicApplication.class, args);
+		SpringApplication.run(ScraperMagicApplication.class, args);
 	}
 }
