@@ -1,6 +1,7 @@
 package com.fermedu.crawler.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
  **/
 @Entity
 @Data
+@DynamicInsert
 @DynamicUpdate // 更改过的column会update
 public class Replaced {
     @Id
