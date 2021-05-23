@@ -15,6 +15,8 @@ public interface PipelineChain extends Pipeline {
 
     PipelineChainAbstract initNext(PipelineChainAbstract next);
 
+    PipelineChainAbstract getNext();
+
     @Override
     void process(ResultItems resultItems, Task task);
 }

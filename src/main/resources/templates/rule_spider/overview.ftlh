@@ -59,6 +59,13 @@
             Scraper Overview
         </h2>
     </a>
+
+    <a target="_blank" href="/rule/book/list">
+        <h2>
+            Rule Overview
+        </h2>
+    </a>
+
 </div>
 <#--</div>-->
 </body>

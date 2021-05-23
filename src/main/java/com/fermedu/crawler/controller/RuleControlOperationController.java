@@ -1,19 +1,15 @@
 package com.fermedu.crawler.controller;
 
-import com.fermedu.crawler.dao.RuleSpiderDao;
 import com.fermedu.crawler.entity.RuleControl;
 import com.fermedu.crawler.entity.RuleGeneric;
 import com.fermedu.crawler.repository.RuleControlRepository;
-import com.fermedu.crawler.service.RuleSpiderObservable;
 import com.guguskill.common.exception.GuNotFoundException;
 import com.guguskill.common.vo.ResultVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 

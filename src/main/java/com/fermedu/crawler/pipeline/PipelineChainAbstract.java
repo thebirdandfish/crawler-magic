@@ -3,6 +3,7 @@ package com.fermedu.crawler.pipeline;
 import com.fermedu.crawler.database.DbServiceAbstract;
 import com.fermedu.crawler.entity.ExtractedEntity;
 import com.guguskill.common.util.ListUtil;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.ResultItems;
@@ -22,6 +23,7 @@ import java.util.List;
 @Slf4j
 public abstract class PipelineChainAbstract<T extends ExtractedEntity> extends DbServiceAbstract<T> implements PipelineChain, Pipeline {
 
+    @Getter
     protected PipelineChainAbstract<T> next;
 
     protected abstract Class<T> getExtractedEntityClz();

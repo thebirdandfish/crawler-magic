@@ -116,6 +116,16 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
         return result;
     }
 
+    public Page<T> findRecentUpdatePage(int page, int size) {
+
+        Sort sort = Sort.by(Sort.Order.desc("updateTime"),
+                Sort.Order.desc("createTime"));
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+
+        Page<T> result = getRepository().findAll(pageRequest);
+        return result;
+    }
+
     public Page<T> findRecentUpdatePage(T anyKeyFieldMatching, int page, int size) {
 
         Sort sort = Sort.by(Sort.Order.desc("updateTime"),
