@@ -2,6 +2,7 @@ package com.fermedu.crawler.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,6 +19,7 @@ import java.util.Date;
  **/
 @Entity
 @Data
+@DynamicInsert
 @DynamicUpdate // 更改过的column会update
 public class RuleControl implements Serializable, EntityGeneric {
     @Id

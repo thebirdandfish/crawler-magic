@@ -30,6 +30,8 @@ target/
 mvnw*
 
 # passcode
+application-dev.*
 application-test.*
+application-test*
 application-staging.*
 application-prod.*

@@ -5,6 +5,8 @@ import com.fermedu.crawler.entity.EntityGeneric;
 import com.fermedu.crawler.entity.ExtractedEntity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -22,6 +24,8 @@ import java.util.List;
  **/
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 public class BookSite implements Serializable, ExtractedEntity, EntityGeneric {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

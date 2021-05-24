@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fermedu.crawler.enumeration.SpiderStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,6 +22,7 @@ import java.util.List;
  **/
 @Entity
 @Data
+@DynamicInsert
 @DynamicUpdate // 更改过的column会update
 public class SpiderEntity implements Serializable, EntityGeneric {
 

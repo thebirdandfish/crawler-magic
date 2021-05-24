@@ -2,6 +2,7 @@ package com.fermedu.crawler.entity;
 
 import com.guguskill.common.util.SimHashUtil;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import java.util.List;
  **/
 @Entity
 @Data
+@DynamicInsert
 @DynamicUpdate // 更改过的column会update
 public class BookRule implements Serializable, EntityGeneric, RuleGeneric {
 

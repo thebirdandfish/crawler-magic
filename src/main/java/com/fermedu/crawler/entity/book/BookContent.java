@@ -3,6 +3,8 @@ package com.fermedu.crawler.entity.book;
 import com.fermedu.crawler.entity.ExtractedEntity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -18,6 +20,8 @@ import java.util.Date;
  **/
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 public class BookContent implements Serializable, ExtractedEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
