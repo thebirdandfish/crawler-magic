@@ -1,6 +1,6 @@
 # Quickstart
 
-## [Documentation](http://localhost:8080/projects/scraper-magic.html)
+## [Documentation](http://justthink.cvcvgo.com/projects/scraper-magic.html)
 
 ## Demo
 
