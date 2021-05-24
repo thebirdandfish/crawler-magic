@@ -22,7 +22,7 @@ import java.util.List;
 @Data
 @DynamicInsert
 @DynamicUpdate // 更改过的column会update
-public class BookRule implements Serializable, EntityGeneric, RuleGeneric {
+public class BookRule implements Serializable, EntityGeneric<Long>, RuleGeneric {
 
     @Id
     private Long id;

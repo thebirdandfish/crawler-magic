@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @Include:
  **/
 @Repository
-public interface SpiderRepository extends JpaRepository<SpiderEntity, Long> {
+public interface SpiderRepository extends JpaRepository<SpiderEntity, String> {
 }

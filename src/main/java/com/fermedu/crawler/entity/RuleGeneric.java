@@ -9,7 +9,7 @@ import java.util.List;
  * @Description:
  * @Include:
  **/
-public interface RuleGeneric extends EntityGeneric {
+public interface RuleGeneric extends EntityGeneric<Long> {
     @Override
     Long getId();
 

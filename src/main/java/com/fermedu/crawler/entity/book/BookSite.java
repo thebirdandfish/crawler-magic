@@ -26,7 +26,7 @@ import java.util.List;
 @Data
 @DynamicInsert
 @DynamicUpdate
-public class BookSite implements Serializable, ExtractedEntity, EntityGeneric {
+public class BookSite implements Serializable, ExtractedEntity, EntityGeneric<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

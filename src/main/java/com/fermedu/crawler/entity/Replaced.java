@@ -20,7 +20,7 @@ import javax.persistence.Id;
 @Data
 @DynamicInsert
 @DynamicUpdate // 更改过的column会update
-public class Replaced {
+public class Replaced implements EntityGeneric<Long> {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

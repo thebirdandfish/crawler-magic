@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * @Include:
  **/
 @Slf4j
-public abstract class DbServiceAbstract<T extends EntityGeneric> {
+public abstract class DbServiceAbstract<T extends EntityGeneric<ID>, ID extends Object> {
 
-    protected abstract JpaRepository<T, Long> getRepository();
+    protected abstract JpaRepository<T, ID> getRepository();
 
     protected abstract String[] getSecondaryKeyArray();
 
@@ -86,7 +86,7 @@ public abstract class DbServiceAbstract<T extends EntityGeneric> {
         }
     }
 
-    public T findById(Long id) {
+    public T findById(ID id) {
         T result = this.getRepository().findById(id).orElseGet(null);
 
         return result;

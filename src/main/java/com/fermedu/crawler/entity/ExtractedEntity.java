@@ -7,7 +7,7 @@ package com.fermedu.crawler.entity;
  * @Description:
  * @Include:
  **/
-public interface ExtractedEntity extends EntityGeneric {
+public interface ExtractedEntity extends EntityGeneric<Long> {
     Long getId();
 
     Long getRuleId();

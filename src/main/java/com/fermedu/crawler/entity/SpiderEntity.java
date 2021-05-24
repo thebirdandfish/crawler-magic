@@ -24,9 +24,10 @@ import java.util.List;
 @Data
 @DynamicInsert
 @DynamicUpdate // 更改过的column会update
-public class SpiderEntity implements Serializable, EntityGeneric {
+public class SpiderEntity implements Serializable, EntityGeneric<String> {
 
     @Id
+    @Column(name = "uuid", length = 64)
     private String uuid; // spiderUuid 通过uuid is comprised of: domain ip port
 
     /** rule */

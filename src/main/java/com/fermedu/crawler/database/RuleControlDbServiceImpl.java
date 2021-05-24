@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  **/
 @Service
 @Slf4j
-public class RuleControlDbServiceImpl extends DbServiceAbstract<RuleControl> implements RuleControlDbService {
+public class RuleControlDbServiceImpl extends DbServiceAbstract<RuleControl, Long> implements RuleControlDbService {
     @Override
     protected String[] getSecondaryKeyArray() {
         return new String[]{"domain"};

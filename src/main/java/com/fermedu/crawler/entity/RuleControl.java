@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 @DynamicInsert
 @DynamicUpdate // 更改过的column会update
-public class RuleControl implements Serializable, EntityGeneric {
+public class RuleControl implements Serializable, EntityGeneric<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

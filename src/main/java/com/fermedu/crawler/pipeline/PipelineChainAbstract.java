@@ -21,7 +21,7 @@ import java.util.List;
  * @Include:
  **/
 @Slf4j
-public abstract class PipelineChainAbstract<T extends ExtractedEntity> extends DbServiceAbstract<T> implements PipelineChain, Pipeline {
+public abstract class PipelineChainAbstract<T extends ExtractedEntity> extends DbServiceAbstract<T, Long> implements PipelineChain, Pipeline {
 
     @Getter
     protected PipelineChainAbstract<T> next;

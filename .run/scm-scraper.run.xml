@@ -7,7 +7,7 @@
         <option name="command" value="" />
         <option name="containerName" value="scm-scraper9102" />
         <option name="entrypoint" value="" />
-        <option name="commandLineOptions" value="-itd -p 9102:9102 --restart unless-stopped" />
+        <option name="commandLineOptions" value="-itd -p 9102:9102 --restart unless-stopped -e &quot;SPRING_PROFILES_ACTIVE=test9102&quot;" />
         <option name="sourceFilePath" value="Dockerfile" />
       </settings>
     </deployment>

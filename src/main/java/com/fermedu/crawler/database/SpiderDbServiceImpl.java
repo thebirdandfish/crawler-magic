@@ -19,7 +19,7 @@ import java.util.List;
  **/
 @Service
 @Slf4j
-public class SpiderDbServiceImpl extends DbServiceAbstract<SpiderEntity> implements SpiderDbService {
+public class SpiderDbServiceImpl extends DbServiceAbstract<SpiderEntity, String> implements SpiderDbService {
     @Override
     protected String[] getSecondaryKeyArray() {
         return new String[]{"spiderUuid"};// ruleId可以重复，spiderUuid 是唯一标识

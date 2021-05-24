@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @Include:
  **/
 @Slf4j
-public abstract class RuleDbChainAbstract<T extends RuleGeneric> extends DbServiceAbstract<T> implements RuleDbChain<T> {
+public abstract class RuleDbChainAbstract<T extends RuleGeneric> extends DbServiceAbstract<T, Long> implements RuleDbChain<T> {
 
     private RuleDbChainAbstract<RuleGeneric> next;
 
