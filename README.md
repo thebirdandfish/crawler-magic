@@ -11,8 +11,8 @@
 
 ### Kibana and Elastic Search
 
-[Kibana http://49.233.196.24:5601/](http://49.233.196.24:5601/)
-[Elastic Search http://49.233.196.24:9200/](http://49.233.196.24:9200/)
+[Kibana (protected) http://49.233.196.24:5601/](http://49.233.196.24:5601/)
+[Elastic Search (protected) http://49.233.196.24:9200/](http://49.233.196.24:9200/)
 
 ## Prerequisites
 ### Dependency
