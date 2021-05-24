@@ -44,7 +44,8 @@ public class RuleSpiderUpdater extends Observable implements RuleSpiderObservabl
      * @Return
      **/
     public RuleSpiderUpdater() { // 构造函数，初始化observer
-        super.addObserver(BeanFactoryUtil.getBeanByImplClass(RuleRunner.class));
+        RuleRunner ruleRunner = BeanFactoryUtil.getBeanByImplClass(RuleRunner.class);
+        super.addObserver(ruleRunner);
     }
 
     /**
@@ -62,10 +63,10 @@ public class RuleSpiderUpdater extends Observable implements RuleSpiderObservabl
         } else {
             /**set changed  and notify */
             if (newMap.equals(this.ruleSpiderDaoMap)) { // 与之前的没有变化
-                log.trace(new Date() + " ruleSpiderDaoMap 没有发生变化，不通知观察者");
+                log.info(new Date() + " ruleSpiderDaoMap 没有发生变化，不通知观察者");
             } else { // 与之前的不同
-                log.trace(new Date() + " ruleSpiderDaoMap 有变化，通知观察者。\n"
-                        + "newMap: " + newMap + "\n"
+                log.info(new Date() + " ruleSpiderDaoMap 有变化，通知观察者。\n");
+                log.trace("newMap: " + newMap + "\n"
                         + "oldMap: " + this.ruleSpiderDaoMap);
                 this.ruleSpiderDaoMap.putAll(newMap);
 

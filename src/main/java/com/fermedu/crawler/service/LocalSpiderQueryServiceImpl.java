@@ -8,6 +8,7 @@ import com.fermedu.crawler.enumeration.SpiderStatusEnum;
 import com.fermedu.crawler.factory.SpiderEntityFactory;
 import com.fermedu.crawler.monitor.CrawlerSpiderStatusMXBean;
 import com.fermedu.crawler.monitor.SpiderDenService;
+import com.fermedu.crawler.repository.SpiderRepository;
 import com.guguskill.common.enumeration.ResultEnum;
 import com.guguskill.common.exception.GuInternalException;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -36,6 +38,9 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
 
     @Autowired
     private SpiderDbService spiderDbServiceImpl;
+
+    @Autowired
+    private SpiderRepository spiderRepository;
 
     @Autowired
     private SpiderEntityFactory spiderEntityFactoryImpl;
@@ -68,12 +73,15 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
         }).collect(Collectors.toList());
 
         // 4. 写入Db
-        spiderDbServiceImpl.addOrUpdateList(generatedSpiderEntities);
-        List<SpiderEntity> allSpiderEntities = spiderDbServiceImpl.findAll();
+        List<SpiderEntity> localSpiderEntities = spiderRepository.saveAll(generatedSpiderEntities);
 
         // 5. 转换为HashMap
-        Map<String, SpiderEntity> localSpiderEntities = allSpiderEntities.stream().collect(Collectors.toMap(e -> e.getDomain(), e -> e));
-        return localSpiderEntities;
+        Map<String, SpiderEntity> localSpiderEntityMap = localSpiderEntities.stream()
+                .collect(Collectors.toMap(e -> e.getDomain(), e -> e));
+
+        log.info("localSpiderEntityMap: {}", localSpiderEntityMap);
+
+        return localSpiderEntityMap;
     }
 
     /***

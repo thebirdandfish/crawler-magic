@@ -33,7 +33,7 @@ public abstract class ProcessorChainAbstract<T extends RuleGeneric> implements P
         }
 
 
-        log.trace(currentUrl
+        log.info(currentUrl
                 + " does not match the "
                 + this.getClass().getSimpleName()
                 + nextString);

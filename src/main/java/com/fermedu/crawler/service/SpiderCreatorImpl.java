@@ -56,6 +56,8 @@ public class SpiderCreatorImpl implements SpiderCreator {
         String indexUrl = UrlFastUtil.setTimestampParamToGetUrl(rule.getDomain());
         spider.addUrl(indexUrl);
 
+
+        log.info("{} created spider {}.", this.getClass().getSimpleName(), spider.getUUID());
         return spider;
     }
 }

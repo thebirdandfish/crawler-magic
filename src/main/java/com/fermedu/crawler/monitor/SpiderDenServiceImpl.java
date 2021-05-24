@@ -60,13 +60,13 @@ public class SpiderDenServiceImpl implements SpiderDenService {
     private List<CrawlerSpiderStatusMXBean> getSpiderStatuses() {
         List<SpiderStatusMXBean> list = this.getSpiderStatusMXBeanListByInvocation();
         if (CollectionUtils.isEmpty(list)) {
-            log.trace("当前jvm没有任何爬虫");
+            log.info("当前jvm没有任何爬虫");
             return null;
         } else {
             List<CrawlerSpiderStatusMXBean> converted = list.stream()
                     .map(each -> (CrawlerSpiderStatusMXBean) each).collect(Collectors.toList());
 
-            log.trace("当前jvm有以下爬虫: " + converted);
+            log.info("当前jvm有以下爬虫: " + converted);
             return converted;
         }
     }

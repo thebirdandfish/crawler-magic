@@ -7,6 +7,6 @@ package com.fermedu.crawler.entity;
  * @Description:
  * @Include:
  **/
-public interface EntityGeneric {
-    Long getId();
+public interface EntityGeneric<ID extends Object> {
+    ID getId();
 }

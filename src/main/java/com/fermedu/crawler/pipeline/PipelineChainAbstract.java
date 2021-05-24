@@ -43,10 +43,10 @@ public abstract class PipelineChainAbstract<T extends ExtractedEntity> extends D
     public void process(ResultItems resultItems, Task task) {
         List<T> list = resultItems.get(this.getExtractedEntityClz().getSimpleName());
         if (CollectionUtils.isEmpty(list)) { // 没有对应当前链的结果
-            log.trace(this.getClass().getSimpleName() + " did not find any " + this.getExtractedEntityClz().getSimpleName() + " in resultItems" + resultItems);
+            log.info(this.getClass().getSimpleName() + " did not find any " + this.getExtractedEntityClz().getSimpleName() + " in resultItems" + resultItems);
         } else {
             List<T> affectedList = super.addOrUpdateList(list);
-            log.trace(this.getClass().getSimpleName() + " found " + this.getExtractedEntityClz().getSimpleName() + " in resultItems" + resultItems + "\n"
+            log.info(this.getClass().getSimpleName() + " found " + this.getExtractedEntityClz().getSimpleName() + " in resultItems" + resultItems + "\n"
                     + affectedList + " was updated.");
         }
 

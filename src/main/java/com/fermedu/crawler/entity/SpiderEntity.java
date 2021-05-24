@@ -27,8 +27,7 @@ import java.util.List;
 public class SpiderEntity implements Serializable, EntityGeneric {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String uuid; // spiderUuid 通过uuid is comprised of: domain ip port
 
     /** rule */
     private String domain; // 对应webmagic给的domain
@@ -38,8 +37,6 @@ public class SpiderEntity implements Serializable, EntityGeneric {
     private int port = -1;
 
     /* spider  */
-    private String uuid; // spiderUuid 通过uuid生成的随机字符串
-
     @Enumerated(EnumType.STRING)
     private SpiderStatusEnum spiderStatus; // spider的状态。初始为关闭
     private int leftPageCount = -1;
@@ -69,4 +66,8 @@ public class SpiderEntity implements Serializable, EntityGeneric {
         return JSON.parseArray(this.errorPagesListJson, String.class);
     }
 
+    @Override
+    public String getId() {
+        return this.uuid;
+    }
 }

@@ -3,6 +3,7 @@ package com.fermedu.crawler.dao;
 import com.fermedu.crawler.entity.RuleGeneric;
 import com.fermedu.crawler.enumeration.SpiderStatusEnum;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @Include:
  **/
 @Data
+@Slf4j
 public class RuleSpiderDao implements Serializable {
 
     /** rule */
@@ -51,19 +53,24 @@ public class RuleSpiderDao implements Serializable {
     public boolean ifReadyToStopSpider() {
         if (this.getLastStop() != null
                 && (new Date().getTime() - this.getLastStop().getTime()) <= 60 * 1000) {
+            log.info("{} not ready to stop due to recent last stop.", this);
             return false; // 近期发布停止爬虫指令
         }
 
         if (this.getRuleStatus().equals(RuleGeneric.Status.ON)) {
+            log.info("{} not ready to stop due to rule status ON.", this);
             return false; // rule on
         } // rule off
 
         if (this.getSpiderStatus().equals(SpiderStatusEnum.STOPPED)) { // spider 1.init正在启动，2running爬虫正在运行
+            log.info("{} not ready to stop due to spider status already STOPPED.", this);
             return false;
         } else if (this.getSpiderStatus().equals(SpiderStatusEnum.UNCREATED)) { // spider stopped 1.爬虫未启动，
+            log.info("{} not ready to stop due to spider status UNCREATED.", this);
             return false; // spider已经关了
         }
 
+        log.info("{} is ready to stop.", this);
         return true;
     }
 
@@ -74,20 +81,25 @@ public class RuleSpiderDao implements Serializable {
         /** lastInit? */
         if (this.getLastInit() != null
                 && (new Date().getTime() - this.getLastInit().getTime()) <= 60 * 1000) {
+            log.info("{} not ready to run due to recent last init.", this);
             return false; // lastInit very recent
         } // lastInit very loing ago
 
         /** 确认 查询rule on ? */
         if (this.getRuleStatus().equals(RuleGeneric.Status.OFF)) {// rule on
+            log.info("{} not ready to run due to OFF rule status.", this);
             return false; // rule is OFF, thus do NOT run the spider
         }// rule is ON
 
         /** spider status? */
-        if (this.getSpiderStatus().equals(SpiderStatusEnum.INIT)) { // 爬虫没有创建
+        if (this.getSpiderStatus().equals(SpiderStatusEnum.INIT)) { // 爬虫 already init
+            log.info("{} not ready to run due to spider status already INIT.", this);
             return false;
         } else if (this.getSpiderStatus().equals(SpiderStatusEnum.RUNNING)) { // rule on spider init
+            log.info("{} not ready to run due to spider status already RUNNING.", this);
             return false;
         }
+        log.info("{} is ready to run.", this);
         return true;
     }
 }

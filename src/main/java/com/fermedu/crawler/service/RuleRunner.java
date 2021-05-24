@@ -47,10 +47,10 @@ public class RuleRunner implements RuleSpiderObserver, Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        Map<String, RuleSpiderDao> ruleSpiderDaoMap = (Map<String, RuleSpiderDao>) arg;
 
-        Map<String, RuleSpiderDao> ruleSpiderDao = (Map<String, RuleSpiderDao>) arg;
-
+        log.info("{} has been notified with {}", this.getClass().getSimpleName(), ruleSpiderDaoMap);
         /** get the list, based on the list, sync rule and spider */
-        this.manipulateSpiderByRule(ruleSpiderDao);// getAndConsumeList() 获取到rule 和spider状态不一致的list
+        this.manipulateSpiderByRule(ruleSpiderDaoMap);// getAndConsumeList() 获取到rule 和spider状态不一致的list
     }
 }
