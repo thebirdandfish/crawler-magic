@@ -37,9 +37,6 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
     private SpiderDenService spiderDenServiceImpl;
 
     @Autowired
-    private SpiderDbService spiderDbServiceImpl;
-
-    @Autowired
     private SpiderRepository spiderRepository;
 
     @Autowired
@@ -141,7 +138,7 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
         spiderEntity.setSpiderStatus(SpiderStatusEnum.INIT);
         spiderEntity.setLastInit(new Date());
 
-        return spiderDbServiceImpl.addOrUpdateOne(spiderEntity);
+        return spiderRepository.save(spiderEntity);
     }
 
     /***
@@ -155,7 +152,6 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
         spiderEntity.setSpiderStatus(SpiderStatusEnum.STOPPED);
         spiderEntity.setLastInit(new Date());
 
-        return spiderDbServiceImpl.addOrUpdateOne(spiderEntity);
+        return spiderRepository.save(spiderEntity);
     }
-
 }

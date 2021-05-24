@@ -2,8 +2,8 @@ package com.fermedu.crawler.controller;
 
 import com.fermedu.crawler.config.LocalConfig;
 import com.fermedu.crawler.dao.RuleSpiderDao;
-import com.fermedu.crawler.database.SpiderDbService;
 import com.fermedu.crawler.entity.SpiderEntity;
+import com.fermedu.crawler.repository.SpiderRepository;
 import com.fermedu.crawler.service.RuleSpiderObservable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class SpiderStatusMonitorController {
     private RuleSpiderObservable ruleSpiderUpdater;
 
     @Autowired
-    private SpiderDbService spiderDbServiceImpl;
+    private SpiderRepository spiderRepository;
 
     @Autowired
     private LocalConfig localConfig;
@@ -38,10 +38,10 @@ public class SpiderStatusMonitorController {
     public ModelAndView scraperStatusMonitor(
             Map<String, Object> map
     ) {
-        Map<String, RuleSpiderDao> ruleSpiderDaoMap = ruleSpiderUpdater.getLocalRuleSpiderDao();
-        map.put("ruleSpiderDaoMap", ruleSpiderDaoMap);
+        Map<String, RuleSpiderDao> localRuleSpiderDaoMap = ruleSpiderUpdater.getLocalRuleSpiderDao();
+        map.put("localRuleSpiderDaoMap", localRuleSpiderDaoMap);
 
-        List<SpiderEntity> spiderEntities = spiderDbServiceImpl.findAll();
+        List<SpiderEntity> spiderEntities = spiderRepository.findAll();
         map.put("spiderEntities", spiderEntities);
 
         map.put("ipAddress", localConfig.getIpAddress());

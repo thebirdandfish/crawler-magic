@@ -62,17 +62,17 @@ public class RuleSpiderUpdater extends Observable implements RuleSpiderObservabl
             throw new GuInternalException(ResultEnum.VALUE_NULL.getCode(), msg);
         } else {
             /**set changed  and notify */
-            if (newMap.equals(this.ruleSpiderDaoMap)) { // 与之前的没有变化
-                log.info(new Date() + " ruleSpiderDaoMap 没有发生变化，不通知观察者");
-            } else { // 与之前的不同
-                log.info(new Date() + " ruleSpiderDaoMap 有变化，通知观察者。\n");
-                log.trace("newMap: " + newMap + "\n"
-                        + "oldMap: " + this.ruleSpiderDaoMap);
+//            if (newMap.equals(this.ruleSpiderDaoMap)) { // 与之前的没有变化
+//                log.info(new Date() + " ruleSpiderDaoMap 没有发生变化，不通知观察者");
+//            } else { // 与之前的不同
+//                log.info(new Date() + " ruleSpiderDaoMap 有变化，通知观察者。\n");
+//                log.trace("newMap: " + newMap + "\n"
+//                        + "oldMap: " + this.ruleSpiderDaoMap);
                 this.ruleSpiderDaoMap.putAll(newMap);
 
                 this.setChanged();
                 this.notifyObservers(this.ruleSpiderDaoMap);
-            }
+//            }
         }
     }
 

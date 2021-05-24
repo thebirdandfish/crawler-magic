@@ -1,5 +1,5 @@
-#FROM openjdk:8-jdk-alpine
-FROM java:8
+FROM openjdk:8-jdk-alpine
+#FROM java:8
 
 MAINTAINER XXX XXX@fermedu.com
 

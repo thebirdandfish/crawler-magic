@@ -46,7 +46,7 @@ public class SpiderCreatorImpl implements SpiderCreator {
         /** create spider */
         Spider spider = Spider
                 .create(pageProcessor) // 会初始化spider对象内的pageProcessor，site，和domain
-                .setUUID(uuid) // 从db中查询到的，预先生成的uuid
+                .setUUID(rule.getDomain()) // Webmagic uses domain as UUID, whereas I use domain|ipAddress:port as the uuid.
                 .addPipeline(pipeline);
 
         /** enhance spider */

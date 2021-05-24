@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="scm-scraper-ali" type="docker-deploy" factoryName="dockerfile" server-name="ali_3year_docker">
+  <configuration default="false" name="scm-scraper-ali9102" type="docker-deploy" factoryName="dockerfile" server-name="ali_3year_docker">
     <deployment type="dockerfile">
       <settings>
         <option name="imageTag" value="scm-scraper9102:latest" />

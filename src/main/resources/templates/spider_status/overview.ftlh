@@ -7,7 +7,7 @@
     <p>Refresh this page anytime to view updates.</p>
 
     <hr>
-    <h1>Scraper Overview (All)</h1>
+    <h1>Scraper Overview (Local)</h1>
     <div id="page-content-wrapper">
         <div class="container row clearfix col-md-12">
             <table class="table table-bordered table-condensed">
@@ -61,52 +61,52 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list ruleSpiderDaoMap as domain, ruleSpiderDao>
+                <#list localRuleSpiderDaoMap as domain, localRuleSpiderDao>
                     <tr>
                         <td>
                             ${(domain)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.uuid)!''}
+                            ${(localRuleSpiderDao.uuid)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.ipAddress)!''}
+                            ${(localRuleSpiderDao.ipAddress)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.port?long?c)!''}
+                            ${(localRuleSpiderDao.port?long?c)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.spiderStatus)!''}
+                            ${(localRuleSpiderDao.spiderStatus)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.leftPageCount)!''}
+                            ${(localRuleSpiderDao.leftPageCount)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.totalPageCount)!''}
+                            ${(localRuleSpiderDao.totalPageCount)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.successPageCount)!''}
+                            ${(localRuleSpiderDao.successPageCount)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.errorPageCount)!''}
+                            ${(localRuleSpiderDao.errorPageCount)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.errorPagesListJson)!''}
+                            ${(localRuleSpiderDao.errorPagesListJson)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.thread)!''}
+                            ${(localRuleSpiderDao.thread)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.startTime)!''}
+                            ${(localRuleSpiderDao.startTime?date)!}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.pagePerSecond)!''}
+                            ${(localRuleSpiderDao.pagePerSecond)!''}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.lastInit)!''}
+                            ${(localRuleSpiderDao.lastInit?date)!}
                         </td>
                         <td>
-                            ${(ruleSpiderDao.lastStop)!''}
+                            ${(localRuleSpiderDao.lastStop?date)!}
                         </td>
                     </tr>
                 </#list>
@@ -116,7 +116,7 @@
     </div>
 
     <hr>
-    <h1>Scrapers Running in Local</h1>
+    <h1>Scrapers (Global)</h1>
     <p>Local machine: ${(ipAddress)!''}:${(port?long?c)!''}</p>
     <div id="page-content-wrapper">
         <div class="container row clearfix col-md-12">
@@ -124,13 +124,10 @@
                 <thead>
                 <tr>
                     <th>
-                        ID
+                        UUID
                     </th>
                     <th>
                         Domain
-                    </th>
-                    <th>
-                        UUID
                     </th>
                     <th>
                         Status
@@ -153,13 +150,10 @@
                 <#list spiderEntities as spiderEntity>
                     <tr>
                         <td>
-                            ${(spiderEntity.id)!''}
+                            ${(spiderEntity.uuid)!''}
                         </td>
                         <td>
                             ${(spiderEntity.domain)!''}
-                        </td>
-                        <td>
-                            ${(spiderEntity.uuid)!''}
                         </td>
                         <td>
                             ${(spiderEntity.spiderStatus)!''}
