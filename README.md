@@ -6,7 +6,8 @@
 
 ### GUI Scraper Management and Monitoring
 
-[Scraper http://49.233.196.24:9101/](http://49.233.196.24:9101/)
+> For demonstration, there is only one instance in the cluster.
+[Scraper http://106.14.57.167:9101/](http://106.14.57.167:9101/)
 
 ### Kibana and Elastic Search
 
