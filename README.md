@@ -6,13 +6,15 @@
 
 ### GUI Scraper Management and Monitoring
 
-> For demonstration, there is only one instance in the cluster.
+> For demonstration, there is only one instance in the cluster.  
+
 [Scraper http://106.14.57.167:9101/](http://106.14.57.167:9101/)
 
 ### Kibana and Elastic Search
 
-[Kibana (protected) http://49.233.196.24:5601/](http://49.233.196.24:5601/)
-[Elastic Search (protected) http://49.233.196.24:9200/](http://49.233.196.24:9200/)
+[Kibana (protected) http://49.233.196.24:5601/](http://49.233.196.24:5601/)  
+
+[Elastic Search (protected) http://49.233.196.24:9200/](http://49.233.196.24:9200/)  
 
 ## Prerequisites
 ### Dependency
