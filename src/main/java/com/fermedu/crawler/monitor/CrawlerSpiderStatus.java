@@ -7,6 +7,7 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.monitor.SpiderMonitor;
 import us.codecraft.webmagic.monitor.SpiderStatus;
 import us.codecraft.webmagic.monitor.SpiderStatusMXBean;
+import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 /**
  * @Program: book-crawler
@@ -27,6 +28,12 @@ public class CrawlerSpiderStatus extends SpiderStatus implements SpiderStatusMXB
         super(spider, monitorSpiderListener);
         this.spider = spider;
         this.monitorSpiderListener = monitorSpiderListener;
+    }
+
+    @Override
+    public void resetDuplicationCheck() {
+        RedisScheduler redisScheduler = (RedisScheduler) this.spider.getScheduler();
+        redisScheduler.resetDuplicateCheck(this.spider);
     }
 
     /***

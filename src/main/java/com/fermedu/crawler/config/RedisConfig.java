@@ -1,11 +1,13 @@
 package com.fermedu.crawler.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 /**
  * @Program: book-crawler
@@ -50,5 +52,11 @@ public class RedisConfig {
             log.error("初始化Redis连接池JedisPool异常:" + e.getMessage());
         }
         return null;
+    }
+
+    @Bean
+    @Autowired
+    public RedisScheduler redisScheduler(JedisPool jedisPool) {
+        return new RedisScheduler(jedisPool); //redisScheduler和其他的scheduler可以同时用。
     }
 }

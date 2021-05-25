@@ -18,9 +18,13 @@ import org.springframework.context.annotation.Configuration;
 public class LocalConfig {
 
     @Getter
-    private final String ipAddress = IpUtil.getLocalHostAddress();
+    private final String ipAddress;
 
     @Getter
     @Value("${server.port}")
     private int port;
+
+    public LocalConfig() {
+        this.ipAddress =  IpUtil.getLocalHostAddress();
+    }
 }

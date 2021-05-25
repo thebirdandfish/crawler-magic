@@ -24,6 +24,7 @@
                     </th>
                     <th colspan="2">Operation</th>
                     <th colspan="1">Scraping Logs</th>
+                    <th colspan="1">Reset Duplication Check (Set)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,9 @@
                         <td>
                             <a target="_blank" href="/extracted/book/logs?domain=${domain}">Logs</a>
                         </td>
+                        <td>
+                            <a target="_blank" href="/duplicationCheck/reset?domain=${domain}">Reset</a>
+                        </td>
                     </tr>
                 </#list>
                 </tbody>
@@ -65,6 +69,19 @@
             Rule Overview
         </h2>
     </a>
+
+    <h2>Xpath Evaluator</h2>
+    <form action="/xpathEvaluator/download/parse" method="get" target="_blank">
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="url" class="form-control" id="url" name="url" placeholder="Enter URL">
+        </div>
+        <div class="form-group">
+            <label for="xpath">Xpath</label>
+            <input type="text" class="form-control" id="xpath" name="xpath" placeholder="Xpath">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 </div>
 <#--</div>-->

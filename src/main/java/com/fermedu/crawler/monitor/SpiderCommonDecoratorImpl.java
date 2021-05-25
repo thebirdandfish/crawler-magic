@@ -34,7 +34,7 @@ public class SpiderCommonDecoratorImpl implements SpiderCommonDecorator {
     private SpiderMonitor spiderMonitor;
 
     @Autowired
-    private JedisPool jedisPool; // 用于注入spider的去重逻辑。
+    private RedisScheduler redisScheduler;
 
     /**
      * 是：queue空但是set有值
@@ -86,8 +86,6 @@ public class SpiderCommonDecoratorImpl implements SpiderCommonDecorator {
      **/
     private void redisScheduler(Spider spider, boolean reset) {
         /** 新建redisScheduler */
-        RedisScheduler redisScheduler = new RedisScheduler(this.jedisPool); //redisScheduler和其他的scheduler可以同时用。
-
         if (queueEmptySetFull(redisScheduler, spider) || reset == true) {
             /** 如果set有值但是queue没有值，说明上次爬虫已经运行完毕
              * 本次create爬虫，必须先清空set */

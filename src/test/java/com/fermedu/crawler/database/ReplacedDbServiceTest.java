@@ -33,6 +33,6 @@ class ReplacedDbServiceTest {
 
         replaced.setFromRegex("\\u54aa\\u54aa\\u9605\\u8bfb.{3,500}\\u002e\\u002e\\u002e");
 
-        replacedRepository.save(replaced);
+        replacedRepository.saveAndFlush(replaced);
     }
 }

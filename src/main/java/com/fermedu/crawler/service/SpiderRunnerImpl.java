@@ -1,6 +1,5 @@
 package com.fermedu.crawler.service;
 
-import com.fermedu.crawler.dao.RuleSpiderDao;
 import com.fermedu.crawler.database.RuleDbFacade;
 import com.fermedu.crawler.entity.RuleGeneric;
 import com.fermedu.crawler.enumeration.SpiderStatusEnum;
@@ -36,19 +35,25 @@ public class SpiderRunnerImpl implements SpiderRunner {
     @Autowired
     private LocalSpiderQueryService localSpiderQueryServiceImpl;
 
-    /**
-     * 1通过domain找到对应localSpiderStatus， 2运行
-     */
-    private void runSpiderByDomain(String domain) {
+    /** call spiderDen to find a spider by domain.
+     * Method is invoked by "destroy spider" and "create spider" */
+    private CrawlerSpiderStatusMXBean findSpiderStatusMXBeanByDomain(String domain) {
         CrawlerSpiderStatusMXBean spiderStatusByDomain = localSpiderQueryServiceImpl.findLocalSpiderStatusByDomain(domain);
         if (spiderStatusByDomain == null) {
-            String msg = domain + "找不到对应的spiderStatus";
+            String msg = String.format("No CrawlerSpiderStatusMXBean is found by %s", domain);
             log.info(msg);
             throw new GuInternalException(ResultEnum.VALUE_NULL.getCode(), msg);
         }
-        log.info(new Date() + " 找到了对应爬虫，直接运行爬虫");
+        log.info("domain {} corresponds to CrawlerSpiderStatusMXBean {}, we will run this shortly.", domain, spiderStatusByDomain.getSpiderUuid());
+        return spiderStatusByDomain;
+    }
 
-        spiderStatusByDomain.startSpiderByRunAsync();
+    /** destroy a pider by domain, by calling spiderDen */
+    private void destroySpiderByDomain(String domain) {
+        CrawlerSpiderStatusMXBean spiderStatusMXBeanByDomain = this.findSpiderStatusMXBeanByDomain(domain);
+
+        spiderStatusMXBeanByDomain.stopSpiderAndDestroy();
+        log.warn("Spider {} has been destroyed.",domain);
     }
 
     /**
@@ -74,13 +79,14 @@ public class SpiderRunnerImpl implements SpiderRunner {
         localSpiderQueryServiceImpl.setLocalSpiderEntityOnInit(domain);
 
         if (spiderStatus.equals(SpiderStatusEnum.UNCREATED)) { // 2. 需要先create
-            log.info(new Date() + " 爬虫没有被创建，准备创建爬虫");
-
-            Spider spider = this.createSpider(domain, reset);
+            log.info("Spider is not yet created for domain {}, now creating it.", domain);
         } else { // 1.已经有spider，直接运行
-            log.info(new Date() + " 爬虫已经被创建，准备查找对应SpiderStatus");
+            log.warn("WARNING! Spider {} is not on, but it appears to be already created. Preparing to destroy the spider.", domain);
+            this.destroySpiderByDomain(domain);
         }
-        this.runSpiderByDomain(domain);
+        Spider spider = this.createSpider(domain, reset);
+        spider.runAsync();
+        log.info("spider is running aync now. Local UUID: {}", spider.getUUID());
     }
 
     @Async

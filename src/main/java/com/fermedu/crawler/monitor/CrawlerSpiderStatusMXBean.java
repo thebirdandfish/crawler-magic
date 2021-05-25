@@ -11,6 +11,8 @@ import us.codecraft.webmagic.monitor.SpiderStatusMXBean;
  * @Include:
  **/
 public interface CrawlerSpiderStatusMXBean extends SpiderStatusMXBean {
+    void resetDuplicationCheck();
+
     Long getRuleId();
 
     String getDomain();

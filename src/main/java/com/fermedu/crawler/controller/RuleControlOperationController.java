@@ -36,7 +36,7 @@ public class RuleControlOperationController {
                 .orElseThrow(() -> new GuNotFoundException(domain + " is not found."));
 
         ruleControl.setRuleStatus(RuleGeneric.Status.ON);
-        RuleControl saved = ruleControlRepository.save(ruleControl);
+        RuleControl saved = ruleControlRepository.saveAndFlush(ruleControl);
 
         return ResultVo.success(saved);
     }
@@ -50,7 +50,7 @@ public class RuleControlOperationController {
                 .orElseThrow(() -> new GuNotFoundException(domain + " is not found."));
 
         ruleControl.setRuleStatus(RuleGeneric.Status.OFF);
-        RuleControl saved = ruleControlRepository.save(ruleControl);
+        RuleControl saved = ruleControlRepository.saveAndFlush(ruleControl);
 
         return ResultVo.success(saved);
     }

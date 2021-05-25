@@ -49,10 +49,10 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
     private LocalConfig localConfig; // 本机ip和port
 
     /***
-    * @Description 每个public方法首先调用。调用后，本机所有spider（已有或者uncreated）均会被更新至数据库。之后调用SpiderDbService可以取得本机对应的SpiderEntity
-    * @Params * @param null
-    * @Return 仅本机对应的所有spiderEntities
-    **/
+     * @Description 每个public方法首先调用。调用后，本机所有spider（已有或者uncreated）均会被更新至数据库。之后调用SpiderDbService可以取得本机对应的SpiderEntity
+     * @Params * @param null
+     * @Return 仅本机对应的所有spiderEntities
+     **/
     private Map<String, SpiderEntity> initSyncLocalSpiderEntities() {
         /** 1. 从rule查找所有记录，每个rule对应一个本机spider（UUID）(domain+ip+port) 。如果对应的UUID还没有初始化，则先初始化UUID。此处是唯一一处初始UUID的地方 */
         // 1. 找到所有rule的domainList
@@ -94,10 +94,10 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
 
 
     /***
-    * @Description 查询domain对应的本机的spiderEntity
-    * @Params * @param domain
-    * @Return 
-    **/
+     * @Description 查询domain对应的本机的spiderEntity
+     * @Params * @param domain
+     * @Return
+     **/
     @Override
     public SpiderEntity findLocalSpiderEntityByDomain(String domain) {
         Map<String, SpiderEntity> entityMap = this.initSyncLocalSpiderEntities();
@@ -105,7 +105,7 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
         SpiderEntity resultEntity = entityMap.get(domain);
 
         if (resultEntity == null) {
-            String msg = "查询spiderEntity的domain参数" + domain + "没有找到对应spiderEntity";
+            String msg = String.format("Looking up for spiderEntity by domain %s, but not found.", domain);
             log.error(msg);
             throw new GuInternalException(ResultEnum.VALUE_NULL.getCode(), msg);
         }
@@ -128,17 +128,17 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
     }
 
     /***
-    * @Description 1. 找到domain对应的本机spiderEntity，2.该状态（enum和lastinit）3.更新到spiderDb
-    * @Params * @param null
-    * @Return
-    **/
+     * @Description 1. 找到domain对应的本机spiderEntity，2.该状态（enum和lastinit）3.更新到spiderDb
+     * @Params * @param null
+     * @Return
+     **/
     @Override
     public SpiderEntity setLocalSpiderEntityOnInit(String domain) {
         SpiderEntity spiderEntity = this.findLocalSpiderEntityByDomain(domain);
         spiderEntity.setSpiderStatus(SpiderStatusEnum.INIT);
         spiderEntity.setLastInit(new Date());
 
-        return spiderRepository.save(spiderEntity);
+        return spiderRepository.saveAndFlush(spiderEntity);
     }
 
     /***
@@ -152,6 +152,6 @@ public class LocalSpiderQueryServiceImpl implements LocalSpiderQueryService {
         spiderEntity.setSpiderStatus(SpiderStatusEnum.STOPPED);
         spiderEntity.setLastInit(new Date());
 
-        return spiderRepository.save(spiderEntity);
+        return spiderRepository.saveAndFlush(spiderEntity);
     }
 }

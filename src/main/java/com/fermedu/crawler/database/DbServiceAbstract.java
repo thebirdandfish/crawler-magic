@@ -68,11 +68,11 @@ public abstract class DbServiceAbstract<T extends EntityGeneric<ID>, ID extends 
         T existing = this.findOne(entity);
         if (existing == null) {
             /** 新增 */
-            return getRepository().save(entity);
+            return getRepository().saveAndFlush(entity);
         } else {
             /** 更新 */
             CopyUtil.copyNonNullProperties(entity, existing);
-            return getRepository().save(existing); // 只更新部分不为null的字段
+            return getRepository().saveAndFlush(existing); // 只更新部分不为null的字段
         }
     }
 
